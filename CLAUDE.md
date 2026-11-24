@@ -8,14 +8,17 @@ You help the owner of this repository forecast on Forewit, a forecasting track r
 * Never show the salt or the contents of a receipt in chat before the commit deadline. Never paste a salt into any website, issue or chat.
 * Receipts (they contain the salt) may be committed only if this repository is private. Run the privacy check first. If it is public, keep receipts only in ~/.forewit and warn the owner that a lost session means a lost salt and a forfeit.
 * Forecasting scores only. Not financial advice. Value is always 0; the only cost is network gas.
+* Tell the owner once per session: keep only a little BNB for gas in the Agentic Wallet used here, and the session always ends with sign out.
+* The sign in link and pairing code come from the official Binance Agentic Wallet CLI running in the owner's own sandbox; show them only to the owner in this chat, never post them anywhere else. Forewit never sees them.
 
 ## Setup (every session)
 1. Run `export NODE_USE_ENV_PROXY=1` (the wallet CLI must use the sandbox network proxy, else it fails with DNS_RESOLVE_FAILED).
 2. The session network must allow www.binance.com, bsc-rpc.publicnode.com, forewit.xyz, api.github.com and the npm registry. If a curl to one of them returns 403, ask the owner to allow it in the environment's network settings.
 3. Use both tools through npx, no global install needed:
    * `npx -y @binance/agentic-wallet@1.12.0 <command>` (called baw below)
-   * `npx -y forewit@latest <command>` (called forewit below)
-4. Restore saved receipts: `mkdir -p ~/.forewit && cp receipts/*.json ~/.forewit/ 2>/dev/null; chmod 600 ~/.forewit/*.json 2>/dev/null`
+   * `npx -y forewit@0.1.0 <command>` (called forewit below; a pinned version, never latest, so a new release cannot run beside a signed in wallet unreviewed)
+4. Restore saved receipts from every branch (earlier sessions may have pushed to their own branch):
+   `mkdir -p ~/.forewit && git fetch -q origin '+refs/heads/*:refs/remotes/origin/*' && for ref in $(git for-each-ref --format='%(refname)' refs/remotes/origin); do git ls-tree -r --name-only "$ref" receipts/ 2>/dev/null | grep '\.json$' | while read f; do git show "$ref:$f" > ~/.forewit/$(basename "$f"); done; done; chmod 600 ~/.forewit/*.json 2>/dev/null; ls ~/.forewit`
 
 ## Privacy check
 * Read owner and name from `git remote get-url origin`, then run `curl -s -o /dev/null -w "%{http_code}" https://api.github.com/repos/<owner>/<name>`. 404 means private (fine). 200 means public: do not commit receipts.
@@ -29,7 +32,7 @@ You help the owner of this repository forecast on Forewit, a forecasting track r
 1. `forewit round` shows the latest round and its phase. For readable questions: `forewit round --round-file https://forewit.xyz/data/rounds/<round>.json`
 2. Show each question. Help the owner think if they ask, but the probabilities are theirs: one percentage per question, 1 to 99, for Yes or Up.
 3. Dry run commit; it saves the receipt with a random salt and sends nothing: `forewit commit --from <address> --p <p1,p2,...> --round-file https://forewit.xyz/data/rounds/<round>.json`. If the CLI says this wallet already committed in this round, tell the owner that sending again replaces the earlier commit and ask whether to continue.
-4. Save the receipt (after the privacy check passed): copy the newest file from ~/.forewit into receipts/, then `git add receipts && git commit -m "receipt round <round>" && git push`
+4. Save the receipt (after the privacy check passed): copy the newest file from ~/.forewit into receipts/, then `git add receipts && git commit -m "receipt round <round>" && git push`. Then confirm it is really stored: `git fetch -q origin && git ls-tree -r --name-only origin/$(git branch --show-current) receipts/` must list the file. If it is not listed, stop and tell the owner; never send a commit whose receipt is not safely stored.
 5. Run exactly the `baw contract-call preview ...` command the CLI printed (through npx as above). Show the owner parsedTx (the target must be the Forewit ledger 0xd11e67ff70ACD42E01d79130f280162b00Bb09B6 and the value 0), simulationResult and every risk.
 6. Ask: "Send this commit? Type yes." Only after the owner types yes: `baw contract-call execute --requestId <requestId> --json`. The request id expires after about 300 seconds; preview again if needed.
 7. BROADCASTED: show the txHash as https://bscscan.com/tx/<txHash>. PENDING_CONFIRMATION: tell the owner to approve in the Binance app and never resend. Any error code: stop and show it.

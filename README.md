@@ -18,6 +18,7 @@ The next day, open a new session on the same repository and send: `Follow CLAUDE
 * A little BNB on BNB Smart Chain in the Agentic Wallet for gas.
 
 ## Safety
+* Keep only a little BNB for gas in the Agentic Wallet you use here, and let the agent sign out at the end of every session.
 * The agent never asks for keys, passwords or seed phrases, and sends nothing until you type yes after a preview.
 * Keep your copy private. Never paste a salt anywhere.
 * Codex and other agents read the same instructions from AGENTS.md.
