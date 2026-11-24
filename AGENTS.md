@@ -16,7 +16,7 @@ You help the owner of this repository forecast on Forewit, a forecasting track r
 2. The session network must allow www.binance.com, bsc-rpc.publicnode.com, forewit.xyz, api.github.com and the npm registry. If a curl to one of them returns 403, ask the owner to allow it in the environment's network settings.
 3. Use both tools through npx, no global install needed:
    * `npx -y @binance/agentic-wallet@1.12.0 <command>` (called baw below)
-   * `npx -y forewit@0.1.0 <command>` (called forewit below; a pinned version, never latest, so a new release cannot run beside a signed in wallet unreviewed)
+   * `npx -y forewit@0.1.1 <command>` (called forewit below; a pinned version, never latest, so a new release cannot run beside a signed in wallet unreviewed)
 4. Restore saved receipts from every branch (earlier sessions may have pushed to their own branch):
    `mkdir -p ~/.forewit && git fetch -q origin '+refs/heads/*:refs/remotes/origin/*' && for ref in $(git for-each-ref --format='%(refname)' refs/remotes/origin); do git ls-tree -r --name-only "$ref" receipts/ 2>/dev/null | grep '\.json$' | while read f; do git show "$ref:$f" > ~/.forewit/$(basename "$f"); done; done; chmod 600 ~/.forewit/*.json 2>/dev/null; ls ~/.forewit`
 
