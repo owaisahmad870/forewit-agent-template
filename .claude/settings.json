@@ -1,0 +1,8 @@
+{
+  "env": { "NODE_USE_ENV_PROXY": "1" },
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "bash .claude/setup.sh", "timeout": 180 } ] }
+    ]
+  }
+}

@@ -2,7 +2,7 @@
   "mcpServers": {
     "forewit": {
       "command": "npx",
-      "args": ["-y", "forewit@0.1.4", "mcp"],
+      "args": ["-y", "forewit@0.1.5", "mcp"],
       "env": { "NODE_USE_ENV_PROXY": "1" }
     }
   }
