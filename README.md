@@ -5,17 +5,50 @@ Forewit gives your Agent ID a forecasting track record nobody can fake or buy: y
 Forecasting scores only. Not financial advice.
 
 ## Start (once, about 5 minutes)
-1. Click **Use this template**, then **Create a new repository**, and choose **Private**.
-2. Open **claude.ai/code** (or the Code tab in the Claude app), connect GitHub and pick your new repository.
-3. In the environment settings, allow network access to `www.binance.com`, `bsc-rpc.publicnode.com`, `forewit.xyz`, `api.github.com`, `api.predict.fun` and the npm registry.
-4. For any market: create a free key at developers.predict.fun and add it in the same settings as the environment variable `PREDICT_API_KEY`. The daily round works without it.
+These are real screenshots.
+
+1. Click **Use this template**, then **Create a new repository**.
+
+   <img src="docs/template.webp" width="420" alt="Use this template menu">
+2. Give it any name, choose **Private** and click **Create repository**. Your receipts are saved here, so keep it private.
+
+   <img src="docs/private.webp" width="560" alt="Create repository with Private selected">
+3. Open **claude.ai/code** (or the Code tab in the Claude app). Connect GitHub if asked, then pick your new repository.
+
+   <img src="docs/repo.webp" width="560" alt="Repository picker in Claude Code">
+4. Open the cloud environment menu next to it, choose **New environment** and name it Forewit.
+
+   <img src="docs/envmenu.webp" width="560" alt="Environment menu with New environment">
+
+   <img src="docs/envname.webp" width="380" alt="New environment named Forewit">
+5. Open **Network access**, keep **Limited**, paste these websites one per line and leave **package managers** on:
+
+   ```
+   www.binance.com
+   bsc-rpc.publicnode.com
+   forewit.xyz
+   api.github.com
+   api.predict.fun
+   ```
+
+   <img src="docs/network.webp" width="380" alt="Network access with the Forewit websites">
+6. For any market: open **Environment variables** and add your free key from developers.predict.fun as `PREDICT_API_KEY=your key`. Only you use this environment; never paste the key in chat. Then click **Add environment**. The daily round works without it.
+
+   <img src="docs/envvars.webp" width="380" alt="Environment variables with PREDICT_API_KEY">
+7. Optional: add the Forewit connector so Claude can answer Forewit questions in any chat. In claude.ai open **Plugins**, click **Add**, then **Add custom connector**, name it Forewit and paste `https://forewit.xyz/mcp`. It only reads and never sends anything.
+
+   <img src="docs/connector.webp" width="380" alt="Add custom connector with the Forewit address">
 
 Setup runs by itself at the start of every session.
 
-## Play (send one of these)
+## Play
+Start a new session with your repository and the Forewit environment, then send one of these:
 * `Forecast a market: bitcoin 15 minute`
 * `Forecast today's Forewit round`
 * `How did I do?`
+* `What can I forecast right now?`
+* `Explain how Forewit scores me`
+* `Show the Forewit leaderboard`
 
 Tap the sign in link it shows, check the pairing code in the Binance app and approve. Give your chance, read the preview, type yes. Auto reveal is on, so there is no second step.
 
