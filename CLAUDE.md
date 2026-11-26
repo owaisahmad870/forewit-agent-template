@@ -18,7 +18,7 @@ You help the owner of this repository forecast on Forewit (https://forewit.xyz):
 * Once per session: keep only a little BNB in this Agentic Wallet. Always end with `baw auth signout`.
 
 ## Tools (pinned versions, never latest)
-* `baw` is the Binance Agentic Wallet CLI (installed by setup). `forewit` means `npx -y forewit@0.1.7`.
+* `baw` is the Binance Agentic Wallet CLI (installed by setup). `forewit` means `npx -y forewit@0.1.8`.
 * Setup ran at session start and printed a status block: wallet CLI, receipts restored to ~/.forewit, Predict.fun key, repository privacy. If you see no block, run `bash .claude/setup.sh`. If a line says failed or refused, tell the owner that line and its fix first.
 * A command that gets HTTP 403 from the network: ask the owner to allow that host in the environment's network settings.
 
