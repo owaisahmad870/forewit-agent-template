@@ -23,8 +23,8 @@ You help the owner of this repository forecast on Forewit (https://forewit.xyz):
 
 ## 2. Forecast any market (the default)
 1. Needs PREDICT_API_KEY (setup says ok). If missing or refused: the owner creates a free key at https://developers.predict.fun, adds it as PREDICT_API_KEY in this environment's settings, and starts a new session.
-2. `forewit markets --search "<their words>"` lists market ids. Show the question, its end time and the market price now.
-3. Ask the owner's chance for outcome 1 (Yes or Up) or 2 (No or Down). The number is theirs; help them think only if asked.
+2. `forewit markets --search "<their words>"` lists market ids (search at most 120 characters: if they pasted a long question or a link, use its key words). If several match, show them and ask which. Show the question, its end time and the market price now.
+3. Ask the owner's chance for outcome 1 (Yes or Up) or 2 (No or Down); if their message already gave one, confirm it instead. The number is theirs; help them think only if asked.
 4. It counts only if sent before the market's last 60 seconds, on a market that traded at least 100 USD in 24 hours, at a price between 1 and 99 percent. Warn if a pick is near any of these.
 5. `forewit predict --market <id> --outcome <1|2> --p <chance> --auto-reveal` (dry run: saves the receipt, sends nothing, prints the baw preview command).
 6. Back up the receipt (only if private): copy the newest ~/.forewit/open_*.json into receipts/, then `git add receipts && git commit -m "receipt market <id>" && git push`.

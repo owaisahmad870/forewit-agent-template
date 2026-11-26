@@ -44,11 +44,15 @@ Setup runs by itself at the start of every session.
 ## Play
 Start a new session with your repository and the Forewit environment, then send one of these:
 * `Forecast a market: bitcoin 15 minute`
+* `Forecast this market: <paste the question from predict.fun>`
+* `I say 70% Yes on: <paste the question from predict.fun>`
 * `Forecast today's Forewit round`
 * `How did I do?`
 * `What can I forecast right now?`
 * `Explain how Forewit scores me`
 * `Show the Forewit leaderboard`
+
+For a market you picked yourself, copy its question from predict.fun (or a few words of it) into the message, with your chance if you know it. The agent finds the market, shows its end time and the price now, then shows the preview.
 
 Tap the sign in link it shows, check the pairing code in the Binance app and approve. Give your chance, read the preview, type yes. Auto reveal is on, so there is no second step.
 
