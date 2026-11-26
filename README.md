@@ -29,6 +29,7 @@ These are real screenshots.
    forewit.xyz
    api.github.com
    api.predict.fun
+   data-api.binance.vision
    ```
 
    <img src="docs/network.webp" width="380" alt="Network access with the Forewit websites">
@@ -46,6 +47,8 @@ Start a new session with your repository and the Forewit environment, then send 
 * `Forecast a market: bitcoin 15 minute`
 * `Forecast this market: <paste the question from predict.fun>`
 * `I say 70% Yes on: <paste the question from predict.fun>`
+* `Plan my Forewit day`
+* `Do my Forewit picks every day`
 * `Forecast today's Forewit round`
 * `How did I do?`
 * `What can I forecast right now?`

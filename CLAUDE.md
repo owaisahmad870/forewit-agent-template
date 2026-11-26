@@ -11,7 +11,7 @@ You help the owner of this repository forecast on Forewit (https://forewit.xyz):
 * Once per session: keep only a little BNB in this Agentic Wallet. Always end with `baw auth signout`.
 
 ## Tools (pinned versions, never latest)
-* `baw` is the Binance Agentic Wallet CLI (installed by setup). `forewit` means `npx -y forewit@0.1.5`.
+* `baw` is the Binance Agentic Wallet CLI (installed by setup). `forewit` means `npx -y forewit@0.1.6`.
 * Setup ran at session start and printed a status block: wallet CLI, receipts restored to ~/.forewit, Predict.fun key, repository privacy. If you see no block, run `bash .claude/setup.sh`. If a line says failed or refused, tell the owner that line and its fix first.
 * A command that gets HTTP 403 from the network: ask the owner to allow that host in the environment's network settings.
 
@@ -32,9 +32,12 @@ You help the owner of this repository forecast on Forewit (https://forewit.xyz):
 8. Then `forewit predictions` shows its status and the price now. Auto reveal scores it after the market settles; nothing more to do.
 
 ## 3. Today's round (the daily featured questions)
-1. `forewit round` gives the round number and phase; `forewit round --round-file https://forewit.xyz/data/rounds/<round>.json` shows readable questions.
-2. Ask one percentage per question, 1 to 99, for Yes or Up.
-3. `forewit commit --p <p1,p2,...> --auto-reveal --round-file https://forewit.xyz/data/rounds/<round>.json` (dry run). If it says this wallet already committed, sending again replaces the earlier commit: ask first.
+1. `forewit plan --from <address>` (`--json` for all fields). Show its report lines as they are; they are short on purpose.
+2. Chances, one per question, 1 to 99, for Yes or Up:
+   * Crypto Up or Down: the plan's suggested number is the baseline from Binance prices (backtested: Brier 0.214 against 0.25 for 50/50 at the deadline). Keep it unless the owner or you have a concrete reason with a source; say it in one line.
+   * "your view" questions: ask the owner, or check one or two current sources (weather: a forecast for that city and day) and propose a number with the source. The owner decides.
+   * Best time: the plan's `next.at`, 30 minutes before the deadline.
+3. Run the plan's commit command without `--execute`, with each `<your %>` replaced (dry run). If it says this wallet already committed, sending again replaces the earlier commit: ask first.
 4. Back up the receipt (only if private): newest ~/.forewit file into receipts/, commit, push, then confirm with `git fetch -q origin && git ls-tree -r --name-only origin/$(git branch --show-current) receipts/`. Without auto reveal, never send a commit whose receipt is not stored.
 5. Send as in section 4. The target must be ForecastLedger 0xd11e67ff70ACD42E01d79130f280162b00Bb09B6.
 6. With auto reveal there is no second step. Without it the owner must reveal after the commit deadline: `forewit reveal --round <round>` (dry run), then section 4.
@@ -43,6 +46,9 @@ You help the owner of this repository forecast on Forewit (https://forewit.xyz):
 1. Run exactly the `baw contract-call preview ...` command the CLI printed. Show parsedTx (target as named in the section, value 0), simulationResult and every risk.
 2. Ask: "Send this? Type yes." Only after yes: `baw contract-call execute --requestId <requestId> --json` (the request expires after about 300 s; preview again if needed).
 3. BROADCASTED: show https://bscscan.com/tx/<txHash>. PENDING_CONFIRMATION: the owner approves in the Binance app; never resend. Any error code: stop and show it.
+
+## Daily
+* "Do my Forewit picks every day" or "Plan my Forewit day": section 3. Offer once to make it a daily routine at the plan's `next.at` (a Claude Code routine or scheduled task that starts a session in this repository with the message "Plan my Forewit day"). Each run still needs the owner: approve the sign in in the Binance app and type yes to the preview. Say so plainly: about two taps a day.
 
 ## 5. Results and finish
 * "How did I do?": `forewit predictions` (any market) and `forewit results --from <address>` (daily rounds: did the owner beat the market). Same at https://forewit.xyz/#/me.
