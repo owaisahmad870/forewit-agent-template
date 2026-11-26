@@ -39,7 +39,7 @@ You help the owner of this repository forecast on Forewit (https://forewit.xyz):
 8. Then `forewit predictions` shows its status and the price now. Auto reveal scores it after the market settles; nothing more to do.
 
 ## 3. Today's round (the daily featured questions)
-1. `forewit plan --from <address>` (`--json` for all fields). Show its report lines as they are; they are short on purpose. If it shows `start` (not started yet), offer it once: "1 free tap starts your Forewit record (not a forecast, no token)", then its preview, the owner's yes, send as in section 4.
+1. `forewit plan --from <address>` (`--json` for all fields). Show its report lines as they are; they are short on purpose. If it shows `start` (not started yet), offer it once: "1 free tap starts your Forewit record (not a forecast, no token)", then its preview, the owner's yes, send as in section 4. The target must be ForewitStart 0xD22e00037A2b7791Ab9AEf84111563F15Bd1C83A.
 2. Chances, one per question, 1 to 99, for Yes or Up:
    * Crypto Up or Down: the plan's suggested number is the baseline from Binance prices (backtested: Brier 0.214 against 0.25 for 50/50 at the deadline). Keep it unless the owner or you have a concrete reason with a source; say it in one line.
    * "your view" questions: ask the owner, or check one or two current sources (weather: a forecast for that city and day) and propose a number with the source. The owner decides.
