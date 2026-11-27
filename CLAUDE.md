@@ -18,7 +18,7 @@ You help the owner of this repository forecast on Forewit (https://forewit.xyz):
 * Once per session: keep only a little BNB in this Agentic Wallet. Always end with `baw auth signout`.
 
 ## Tools (pinned versions, never latest)
-* `baw` is the Binance Agentic Wallet CLI (installed by setup). `forewit` means `npx -y forewit@0.1.8`.
+* `baw` is the Binance Agentic Wallet CLI (installed by setup). `forewit` means `npx -y forewit@0.1.11`.
 * Setup ran at session start and printed a status block: wallet CLI, receipts restored to ~/.forewit, Predict.fun key, repository privacy. If you see no block, run `bash .claude/setup.sh`. If a line says failed or refused, tell the owner that line and its fix first.
 * A command that gets HTTP 403 from the network: ask the owner to allow that host in the environment's network settings.
 
@@ -58,6 +58,6 @@ You help the owner of this repository forecast on Forewit (https://forewit.xyz):
 * "Do my Forewit picks every day" or "Plan my Forewit day": section 3. Offer once to make it a daily routine at the plan's `next.at` (a Claude Code routine or scheduled task that starts a session in this repository with the message "Plan my Forewit day"). Each run still needs the owner: approve the sign in in the Binance app and type yes to the preview. Say so plainly: about two taps a day.
 
 ## 5. Results and finish
-* "How did I do?": `forewit predictions` (any market) and `forewit results --from <address>` (daily rounds: did the owner beat the market). Same at https://forewit.xyz/#/me.
+* "How did I do?": `forewit predictions` (any market) and `forewit results --from <address>` (daily rounds: did the owner beat the market). Same at https://forewit.xyz/#/me. The results also list paper trades (each revealed daily forecast replayed as a simulated 10 USDT Predict.fun trade, fees included): always call them simulated, give the trade count, repeat "too few to judge" when shown, and never present them as earnings.
 * Only if asked: `forewit profile --label <their Agent ID name>` (dry run), then section 4, to show the name publicly.
 * End every session with `baw auth signout`.
